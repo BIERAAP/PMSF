@@ -1094,7 +1094,7 @@ if ( $blockIframe ) {
             $time = date("Y-m-d", $_SESSION['user']->expire_timestamp);
             
             echo $_SESSION['user']->user . "<br>";
-            if ($_SESSION['user']->expire_timestamp < time()) {
+            if ($_SESSION['user']->expire_timestamp > time()) {
                 echo "<span style='color: green;'>" . i8ln('Membership expires on') . " {$time}</span>";
             } else {
                 echo "<span style='color: red;'>" . i8ln('Membership expired on') . " {$time}</span>";
