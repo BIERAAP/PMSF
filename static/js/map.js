@@ -1038,7 +1038,7 @@ function pokestopLabel(expireTime, latitude, longitude, stopName, url, lureUser,
             str += '<center><div>' + i8ln('Convert to Gym') + '<i class="fa fa-refresh convert-pokestop" style="margin-top: 2px; vertical-align: middle; font-size: 1.5em;" onclick="openConvertPokestopModal(event);" data-id="' + id + '"></i></div></center>'
         }
         str += '<div><center>' +
-            i8ln('Location:') + ' ' + '<a href="javascript:void(0)" onclick="javascript:openMapDirections(' + latitude + ',' + longitude + ')" title="' + i8ln('View in Maps') + '">' + latitude + ', ' + longitude + '</a> - <a href="./?lat=' + latitude + '&lon=' + longitude + '&zoom=16">Share link</a>' +
+            '<a href="javascript:void(0)" onclick="javascript:openMapDirections(' + latitude + ',' + longitude + ')" title="' + i8ln('View in Maps') + '">Navigate to</a>' +
             '</center></div>'
         if ((!noWhatsappLink) && (quest && reward !== null)) {
             str += '<div>' +
@@ -1105,7 +1105,7 @@ function pokestopLabel(expireTime, latitude, longitude, stopName, url, lureUser,
             str += '<center><div>' + i8ln('Convert to Gym') + '<i class="fa fa-refresh convert-pokestop" style="margin-top: 2px; vertical-align: middle; font-size: 1.5em;" onclick="openConvertPokestopModal(event);" data-id="' + id + '"></i></div></center>'
         }
         str += '<div>' +
-            i8ln('Location:') + ' ' + '<a href="javascript:void(0)" onclick="javascript:openMapDirections(' + latitude + ',' + longitude + ')" title="' + i8ln('View in Maps') + '">' + latitude + ', ' + longitude + '</a> - <a href="./?lat=' + latitude + '&lon=' + longitude + '&zoom=16">Share link</a>' +
+             '<a href="javascript:void(0)" onclick="javascript:openMapDirections(' + latitude + ',' + longitude + ')" title="' + i8ln('View in Maps') + '"> Navigate to </a> '+
             '</div>'
         if ((!noWhatsappLink) && (quest && reward !== null)) {
             str += '<div>' +
@@ -1751,7 +1751,7 @@ function nestLabel(item) {
         str += '<center><div>' + i8ln('Add Nest') + '<i class="fa fa-binoculars submit-nest" onclick="openNestModal(event);" data-id="' + item['nest_id'] + '"></i></div></center>'
     }
     str += '<div>' +
-        'Location: <a href="javascript:void(0)" onclick="javascript:openMapDirections(' + item.lat + ',' + item.lon + ')" title="' + i8ln('View in Maps') + '">' + item.lat.toFixed(6) + ', ' + item.lon.toFixed(7) + '</a> - <a href="./?lat=' + item.lat + '&lon=' + item.lon + '&zoom=16">Share link</a>' +
+        '<a href="javascript:void(0)" onclick="javascript:openMapDirections(' + item.lat + ',' + item.lon + ')" title="' + i8ln('View in Maps') + '"> Navigate to </a>' +
         '</div>'
     if ((!noWhatsappLink) && (item.pokemon_id > 0)) {
         str += '<div>' +
@@ -4372,7 +4372,7 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
             '</div>' +
             lastScannedStr +
             '<div>' +
-            '<a href=\'javascript:void(0)\' onclick=\'javascript:openMapDirections(' + result.latitude + ',' + result.longitude + ')\' title=\'' + i8ln('View in Maps') + '\'>' + i8ln('Get directions') + '</a> - <a href="./?lat=' + result.latitude + '&lon=' + result.longitude + '&zoom=16">Share link</a>' +
+            '<a href=\'javascript:void(0)\' onclick=\'javascript:openMapDirections(' + result.latitude + ',' + result.longitude + ')\' title=\'' + i8ln('View in Maps') + '\'>' + i8ln('Get directions') +
             '</div>' +
             '</center>'
 
