@@ -100,11 +100,14 @@ include('config/config.php');
                 setcookie("LoginCookie", session_id(), time()+60*60*24*7);
 
                 $db->update("users", [
-                    "Session_ID" => session_id()
+                    "Session_ID" => session_id(),
+                    "lastlogon" => time()
                 ], [
                     "user" => $_POST['email'],
                     "login_system" => 'native'
                 ]);
+
+                
 
                 if (password_verify($_POST['password'], $info['password']) === true) {
                     if (!empty($info['temp_password'])) {
@@ -138,7 +141,7 @@ include('config/config.php');
                 $message .= i8ln('Your old password is still working.') . "<br><br>";
                 $message .= i8ln('New password: ') . " {$randomPwd}<br><br>";
             } else {
-                createUserAccount($_POST['email'], $randomPwd, time());
+                createUserAccount($_POST['email'], $randomPwd, time() + 260000);
                 $subject = "[{$title}] - Welcome";
                 
                 $message .= i8ln('Dear') . " {$_POST['email']},<br><br>";
@@ -214,7 +217,7 @@ include('config/config.php');
 
                 if (!empty($_POST['createUserEmail'])) {
                     $createUserPwd = generateRandomString();
-                    if (createUserAccount($_POST['createUserEmail'], $createUserPwd, time()) === false) {
+                    if (createUserAccount($_POST['createUserEmail'], $createUserPwd, time()+260000) === false) {
                         $Err = i8ln('Email already in use.');
                     }
                 }

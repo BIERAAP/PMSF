@@ -106,10 +106,11 @@ function createUserAccount($user, $password, $newExpireTimestamp)
                 "user" => $user,
                 "temp_password" => $hashedPwd,
                 "expire_timestamp" => $newExpireTimestamp,
-                "login_system" => 'native'
+                "login_system" => 'native',
+                "access_level" => 0
             ]);
             
-            $logMsg = "INSERT INTO users (id, user, expire_timestamp, login_system) VALUES ('{$getId}', '{$user}', '{$newExpireTimestamp}', 'native'); -- " . date('Y-m-d H:i:s') . "\r\n";
+            $logMsg = "INSERT INTO users (id, user, expire_timestamp, login_system,access_level) VALUES ('{$getId}', '{$user}', '{$newExpireTimestamp}', 'native'); -- " . date('Y-m-d H:i:s') . "\r\n";
             file_put_contents($logfile, $logMsg, FILE_APPEND);
 
             return true;
@@ -209,6 +210,7 @@ function validateCookie($cookie)
             $_SESSION['user']->updatePwd = 1;
         }
         setcookie("LoginCookie", $cookie, time()+60*60*24*7);
+        
         return true;
     } else {
         destroyCookiesAndSessions();
