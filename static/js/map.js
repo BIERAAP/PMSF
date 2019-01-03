@@ -569,7 +569,7 @@ function getDateStr(t) { // eslint-disable-line no-unused-vars
 function getTimeStr(t) {
     var dateStr = 'Unknown'
     if (t) {
-        dateStr = moment(t).format('HH:MM')
+        dateStr = moment(t).format('HH:mm')
     }
     return dateStr
 }
