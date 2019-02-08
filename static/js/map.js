@@ -601,7 +601,7 @@ function openMapDirections(lat, lng) { // eslint-disable-line no-unused-vars
 function getDateStr(t) { // eslint-disable-line no-unused-vars
     var dateStr = 'Unknown'
     if (t) {
-        dateStr = moment(t).format('L')
+        dateStr = moment(t).format('DD-MM-YYYY')
     }
     return dateStr
 }
@@ -610,7 +610,7 @@ function getDateStr(t) { // eslint-disable-line no-unused-vars
 function getTimeStr(t) {
     var dateStr = 'Unknown'
     if (t) {
-        dateStr = moment(t).format('LTS')
+        dateStr = moment(t).format('HH:mm')
     }
     return dateStr
 }
@@ -937,18 +937,18 @@ function gymLabel(item) {
             '</div>' +
             '</center>' +
             '</div>'
-        if (((!noWhatsappLink) && (raidSpawned && item.raid_end > Date.now())) && (item.raid_pokemon_id > 1 && item.raid_pokemon_id < numberOfPokemon)) {
+   if (((!noWhatsappLink) && (raidSpawned && item.raid_end > Date.now())) && (item.raid_pokemon_id > 1 && item.raid_pokemon_id < numberOfPokemon)) {
             str += '<center>' +
                 '<div>' +
-                '<a href="whatsapp://send?text=' + encodeURIComponent(item.name) + '%0ALevel%20' + item.raid_level + '%20' + item.raid_pokemon_name + '%0A%2AStart:%20' + raidStartStr + '%2A%0A%2AEnd:%20' + raidEndStr + '%2A%0AStats:%0Ahttps://pokemongo.gamepress.gg/pokemon/' + item.raid_pokemon_id + '%0ADirections:%0Ahttps://www.google.com/maps/search/?api=1%26query=' + item.latitude + ',' + item.longitude + '" data-action="share/whatsapp/share">Whatsapp Link</a>' +
+                '<a href="whatsapp://send?text=%2A' + encodeURIComponent(item.name) + ' Level ' + item.raid_level + ' ' + item.raid_pokemon_name + ' Raid: ' + raidEndStr + '%2A'+'" data-action="share/whatsapp/share">Whatsapp Link</a>' +
                 '</div>' +
                 '</center>'
         } else if ((!noWhatsappLink) && (raidSpawned && item.raid_end > Date.now())) {
             str += '<center>' +
                 '<div>' +
-                '<a href="whatsapp://send?text=' + encodeURIComponent(item.name) + '%0ALevel%20' + item.raid_level + '%20egg%0A%2AStart:%20' + raidStartStr + '%2A%0A%2AEnd:%20' + raidEndStr + '%2A%0ADirections:%0Ahttps://www.google.com/maps/search/?api=1%26query=' + item.latitude + ',' + item.longitude + '" data-action="share/whatsapp/share">Whatsapp Link</a>' +
-                '</div>' +
+                '<a href="whatsapp://send?text=%2A' + encodeURIComponent(item.name) + ' Level ' + item.raid_level + ' Hatch : ' + raidStartStr + ' Raid: ' + raidEndStr + '%2A' +'" data-action="share/whatsapp/share">Whatsapp Link</a>' +
                 '</center>'
+
         }
     } else {
         var freeSlots = item['slots_available']
@@ -990,16 +990,17 @@ function gymLabel(item) {
             '</div>' +
             '</center>' +
             '</div>'
+            '</div>'
         if (((!noWhatsappLink) && (raidSpawned && item.raid_end > Date.now())) && (item.raid_pokemon_id > 1 && item.raid_pokemon_id < numberOfPokemon)) {
             str += '<center>' +
                 '<div>' +
-                '<a href="whatsapp://send?text=' + encodeURIComponent(item.name) + '%0ALevel%20' + item.raid_level + '%20' + item.raid_pokemon_name + '%0A%2AStart:%20' + raidStartStr + '%2A%0A%2AEnd:%20' + raidEndStr + '%2A%0AStats:%0Ahttps://pokemongo.gamepress.gg/pokemon/' + item.raid_pokemon_id + '%0ADirections:%0Ahttps://www.google.com/maps/search/?api=1%26query=' + item.latitude + ',' + item.longitude + '" data-action="share/whatsapp/share">Whatsapp Link</a>' +
+                '<a href="whatsapp://send?text=%2A' + encodeURIComponent(item.name) + ' Level ' + item.raid_level + ' ' + item.raid_pokemon_name + ' Raid: ' + raidEndStr + '%2A'+'" data-action="share/whatsapp/share">Whatsapp Link</a>' +
                 '</div>' +
                 '</center>'
         } else if ((!noWhatsappLink) && (raidSpawned && item.raid_end > Date.now())) {
             str += '<center>' +
                 '<div>' +
-                '<a href="whatsapp://send?text=' + encodeURIComponent(item.name) + '%0ALevel%20' + item.raid_level + '%20egg%0A%2AStart:%20' + raidStartStr + '%2A%0A%2AEnd:%20' + raidEndStr + '%2A%0ADirections:%0Ahttps://www.google.com/maps/search/?api=1%26query=' + item.latitude + ',' + item.longitude + '" data-action="share/whatsapp/share">Whatsapp Link</a>' +
+                '<a href="whatsapp://send?text=%2A' + encodeURIComponent(item.name) + ' Level ' + item.raid_level + ' Hatch: ' + raidStartStr + ' Raid: ' + raidEndStr + '%2A' +'" data-action="share/whatsapp/share">Whatsapp Link</a>' +
                 '</div>' +
                 '</center>'
         }
@@ -4680,7 +4681,8 @@ function sendToastrPokemonNotification(title, text, icon, lat, lon) {
     notification.removeClass('toast-info')
     notification.css({
         'padding-left': '74px',
-        'background-image': `url('${icon}')`,
+        'width' : '230px',
+	'background-image': `url('${icon}')`,
         'background-size': '48px',
         'background-color': '#0c5952'
     })

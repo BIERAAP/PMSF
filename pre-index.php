@@ -4,6 +4,7 @@ if ( ! file_exists( 'config/config.php' ) ) {
     die( "<h1>Config file missing</h1><p>Please ensure you have created your config file (<code>config/config.php</code>).</p>" );
 }
 include( 'config/config.php' );
+
 $zoom        = ! empty( $_GET['zoom'] ) ? $_GET['zoom'] : null;
 $encounterId = ! empty( $_GET['encId'] ) ? $_GET['encId'] : null;
 if ( ! empty( $_GET['lat'] ) && ! empty( $_GET['lon'] ) ) {
@@ -66,7 +67,8 @@ if ( $blockIframe ) {
           sizes="180x180">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.js"></script>
     <?php
-    function pokemonFilterImages( $noPokemonNumbers, $onClick = '', $pokemonToExclude = array(), $num = 0 ) {
+
+function pokemonFilterImages( $noPokemonNumbers, $onClick = '', $pokemonToExclude = array(), $num = 0 ) {
         global $mons, $copyrightSafe, $iconRepository;
         if ( empty( $mons ) ) {
             $json = file_get_contents( 'static/dist/data/pokemon.min.json' );
@@ -247,7 +249,6 @@ if ( $blockIframe ) {
                     header("Location: ./user");
                     die();
                 }
-                
                 if ($info['expire_timestamp'] > time()) {
                     $color = "green";
                 } else {
@@ -255,6 +256,9 @@ if ( $blockIframe ) {
                 }
 
                 echo "<span style='color: {$color};'>" . substr($_SESSION['user']->user, 0, 3) . "...</span>";
+		if(file_exists('config/access-config.php')) { include 'config/access-config.php'; }
+
+
             } else {
                 echo "<a href='./user'>" . i8ln('Login') . "</a>";
             }
@@ -271,6 +275,8 @@ if ( $blockIframe ) {
     <nav id="nav">
         <div id="nav-accordion">
             <?php
+
+
             if ( ! $noPokemon || ! $noNests ) {
                 if ( ! $noNests ) {
                 ?>
@@ -1245,7 +1251,7 @@ if ( $blockIframe ) {
             $time = date("Y-m-d", $_SESSION['user']->expire_timestamp);
             
             echo $_SESSION['user']->user . "<br>";
-            if ($_SESSION['user']->expire_timestamp < time()) {
+            if ($_SESSION['user']->expire_timestamp > time()) {
                 echo "<span style='color: green;'>" . i8ln('Membership expires on') . " {$time}</span>";
             } else {
                 echo "<span style='color: red;'>" . i8ln('Membership expired on') . " {$time}</span>";
