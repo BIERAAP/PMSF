@@ -100,7 +100,8 @@ include('config/config.php');
                 setcookie("LoginCookie", session_id(), time()+60*60*24*7);
 
                 $manualdb->update("users", [
-                    "Session_ID" => session_id()
+                    "Session_ID" => session_id(),
+                     "lastlogon" => time()
                 ], [
                     "user" => $_POST['email'],
                     "login_system" => 'native'
