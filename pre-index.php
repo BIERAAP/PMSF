@@ -1228,7 +1228,7 @@ function pokemonFilterImages( $noPokemonNumbers, $onClick = '', $pokemonToExclud
             </center>
         </div>
         <?php
-        if (($noNativeLogin === false) && !empty($_SESSION['user']->id)) {
+        if (($noNativeLogin === false) && !empty($_SESSION['user']->id) && !empty($sellyPage)) {
             ?>
             <div>
                 <center>
