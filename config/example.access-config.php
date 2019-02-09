@@ -27,8 +27,18 @@ $ownerLevel = 4;
 
 
 if ($noNativeLogin === true && $noDiscordLogin === true ||  (($noNativeLogin === false || $noDiscordLogin === false) && !empty($_SESSION['user']->expire_timestamp) && $_SESSION['user']->expire_timestamp > time()))  {
-    $userAccessLevel = $manualdb->get( "users", [ 'access_level' ], [ 'expire_timestamp' => $_SESSION['user']->expire_timestamp ] );
-    if ($userAccessLevel['access_level'] == $userLevel) {
+$userAccessLevel = $db->get( "users", [ 'access_level' ], [ 'session_id' => session_id(), 'user' => $_SESSION['user']->user, 'expire_timestamp' => $_SESSION['user']->expire_timestamp ] );
+
+if (!$userAccessLevel)
+{
+ header("Location: ./logout.php");
+}
+
+if ($userAccessLevel['access_level'] == $userLevel) {
+
+
+
+
 // Editting variables
         $noManualGyms = true;                                          // true/false
         $noManualPokestops = true;                                     // true/false
