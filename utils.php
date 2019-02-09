@@ -182,6 +182,7 @@ function destroyCookiesAndSessions()
         "login_system" => $_SESSION['user']->login_system
     ]);
 
+
     unset($_SESSION);
     unset($_COOKIE['LoginCookie']);
     setcookie("LoginCookie", "", time()-3600);
